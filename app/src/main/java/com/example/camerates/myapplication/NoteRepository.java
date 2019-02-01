@@ -15,10 +15,14 @@ public class NoteRepository {
 
         //Create database and automaticlly room will instinate note Dao
         NoteDatabase noteDatabase=NoteDatabase.getInstance(application);
-
+        noteDao=noteDatabase.getNoteDao();
         //get all notes cuase we use liveData it'll do database opreation in another thread
         allNotes=noteDao.getAllNotes();
 
+    }
+
+    public LiveData<List<Note>> getAllNotes() {
+        return allNotes;
     }
 
     public  void insert(Note note){
