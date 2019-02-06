@@ -15,10 +15,11 @@ public class AddEditNoteActivity extends AppCompatActivity {
     EditText titleEditText;
     EditText descriptionEditText;
     NumberPicker periorityNumberPicker;
-    public static final String KEY_EXTRA_TITLE="com.example.camerates.myapplication.note_title";
-    public static final String KEY_EXTRA_DESCRIPTION="com.example.camerates.myapplication.note_description";
-    public static final String KEY_EXTRA_PERIORTY="com.example.camerates.myapplication.note_periorty";
-    public static final String KEY_EXTRA_ID="com.example.camerates.myapplication.note_id";
+    public static final String KEY_EXTRA_TITLE = "com.example.camerates.myapplication.note_title";
+    public static final String KEY_EXTRA_DESCRIPTION = "com.example.camerates.myapplication.note_description";
+    public static final String KEY_EXTRA_PERIORTY = "com.example.camerates.myapplication.note_periorty";
+    public static final String KEY_EXTRA_ID = "com.example.camerates.myapplication.note_id";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,13 +32,13 @@ public class AddEditNoteActivity extends AppCompatActivity {
 
         periorityNumberPicker.setMinValue(1);
         periorityNumberPicker.setMaxValue(10);
-        Intent intent=getIntent();
-        if(intent.hasExtra(KEY_EXTRA_ID)){
+        Intent intent = getIntent();
+        if (intent.hasExtra(KEY_EXTRA_ID)) {
             setTitle("Edit Note");
             titleEditText.setText(intent.getStringExtra(KEY_EXTRA_TITLE));
             descriptionEditText.setText(intent.getStringExtra(KEY_EXTRA_DESCRIPTION));
-            periorityNumberPicker.setValue(intent.getIntExtra(KEY_EXTRA_PERIORTY,1));
-        }else{
+            periorityNumberPicker.setValue(intent.getIntExtra(KEY_EXTRA_PERIORTY, 1));
+        } else {
             setTitle("Add Note");
         }
 
@@ -51,16 +52,16 @@ public class AddEditNoteActivity extends AppCompatActivity {
         if (title.trim().isEmpty() || description.trim().isEmpty()) {
             Toast.makeText(this, "Please insert note title and description", Toast.LENGTH_SHORT).show();
             return;
-        }else{
-            Intent data=new Intent();
-            data.putExtra(KEY_EXTRA_TITLE,title);
-            data.putExtra(KEY_EXTRA_DESCRIPTION,description);
-            data.putExtra(KEY_EXTRA_PERIORTY,periorty);
-            int id=getIntent().getIntExtra(KEY_EXTRA_ID,-1);
-            if(id!=-1) {
-                data.putExtra(KEY_EXTRA_ID,id);
+        } else {
+            Intent data = new Intent();
+            data.putExtra(KEY_EXTRA_TITLE, title);
+            data.putExtra(KEY_EXTRA_DESCRIPTION, description);
+            data.putExtra(KEY_EXTRA_PERIORTY, periorty);
+            int id = getIntent().getIntExtra(KEY_EXTRA_ID, -1);
+            if (id != -1) {
+                data.putExtra(KEY_EXTRA_ID, id);
             }
-            setResult(RESULT_OK,data);
+            setResult(RESULT_OK, data);
             finish();
 
         }

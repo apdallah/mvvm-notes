@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         noteViewModel.getAllNotes().observe(this, new Observer<List<Note>>() {
             @Override
             public void onChanged(@Nullable List<Note> notes) {
-                noteAdapter.setNoteList(notes);
+                noteAdapter.submitList(notes);
             }
         });
         noteAdapter.setListner(new NoteAdapter.OnItemClickListner() {
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-                noteViewModel.deleteNote(noteAdapter.getItemAt(viewHolder.getAdapterPosition()));
+                noteViewModel.deleteNote(noteAdapter.getNoteAt(viewHolder.getAdapterPosition()));
                 Toast.makeText(MainActivity.this, "Note Deleted!", Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerView);
